@@ -24,12 +24,14 @@ const SuperHeader = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 6px 32px;
+  align-items: center;
   gap: 24px;
   font-size: 0.875rem;
-  align-items: center;
   color: ${COLORS.gray[300]};
   background-color: ${COLORS.gray[900]};
+  height: 2.5rem;
+  padding-left: 32px;
+  padding-right: 32px;
 `;
 
 const MarketingMessage = styled.span`
