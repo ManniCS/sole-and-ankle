@@ -37,7 +37,7 @@ const ShoeCard = ({
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
-        <Spacer size={12} />
+        <Spacer size={2} />
         <Row>
           <Name>{name}</Name>
           <Price>{formatPrice(price)}</Price>
@@ -55,16 +55,28 @@ const Link = styled.a`
   color: inherit;
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+  flex: 1; 
+  min-width: 275px;
+  max-width: 325px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  width: 100%;
+  border-radius: 16px 16px 4px 4px;
+`;
 
 const Row = styled.div`
   font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Name = styled.h3`
