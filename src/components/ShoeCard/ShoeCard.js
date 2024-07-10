@@ -30,20 +30,24 @@ const ShoeCard = ({
     : isNewShoe(releaseDate)
       ? 'new-release'
       : 'default'
-
+  const PriceTag = variant === 'on-sale' ? OldPrice : Price
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
+          {variant === 'new-release' ? 
+            <NewReleaseFlag>Just Released!</NewReleaseFlag> : 
+              variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
         </ImageWrapper>
         <Spacer size={2} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <PriceTag>{formatPrice(price)}</PriceTag>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          {variant === 'on-sale' && <SalePrice>{formatPrice(salePrice)}</SalePrice>}
         </Row>
       </Wrapper>
     </Link>
@@ -56,9 +60,6 @@ const Link = styled.a`
 `;
 
 const Wrapper = styled.article`
-  flex: 1; 
-  min-width: 275px;
-  max-width: 325px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -90,9 +91,34 @@ const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};
 `;
 
+const OldPrice = styled.span`
+  color: ${COLORS.gray[700]};
+  text-decoration: line-through;
+`
+
 const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.primary};
 `;
+
+const Flag = styled.div`
+  border-radius: 2px; 
+  font-weight: ${WEIGHTS.bold};
+  color: ${COLORS.white};
+  width: fit-content;
+  font-size: ${14 / 16 + 'rem'};
+  padding: 9px;
+  position: absolute;
+  top: 12px;
+  right: -4px;
+`
+
+const NewReleaseFlag = styled(Flag)`
+  background-color: ${COLORS.secondary};
+`
+
+const SaleFlag = styled(Flag)`
+  background-color: ${COLORS.primary};
+`
 
 export default ShoeCard;
